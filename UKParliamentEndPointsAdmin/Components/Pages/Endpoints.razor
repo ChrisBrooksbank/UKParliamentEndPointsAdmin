@@ -1,13 +1,11 @@
-﻿@page "/weather"
+﻿@page "/endpoints"
 @using Newtonsoft.Json
 @inject IHttpClientFactory HttpClientFactory
 @attribute [StreamRendering]
 
 <PageTitle>UK Parliamentary EndPoints</PageTitle>
 
-<h1>Endpoints</h1>
-
-<p>This component demonstrates showing data.</p>
+<p>Browsing endpoints from <a target="_blank" href="https://ukparliamentendpoints-services.azurewebsites.net/swagger/index.html">endpoints API</a>.</p>
 
 @if (_endpoints == null)
 {
@@ -19,19 +17,20 @@ else
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Uri</th>
                 <th>Description</th>
-                <th>Ping Status</th>
+                <th>Ping</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var endpoint in _endpoints)
             {
                 <tr>
-                    <td>@endpoint.id</td>
-                    <td><a href="@endpoint.uri" target="_blank">Fetch Data</a></td>
+                    <td><a href="@endpoint.uri" target="_blank">@endpoint.id</a></td>
                     <td>@endpoint.description</td>
-                    <td>@endpoint.pingStatus</td>
+                    <td>
+                        @(endpoint.pingTimeStamp.HasValue ? $"{GetFriendlyElapsedTime(endpoint.pingTimeStamp.Value)}" : "")
+                        - @endpoint.pingStatus
+                    </td>
                 </tr>
             }
         </tbody>
@@ -55,5 +54,19 @@ else
         public string? uri { get; set; }
         public string? description { get; set; }
         public string? pingStatus { get; set; }
+        public DateTime? pingTimeStamp { get; set; }
+    }
+
+    string GetFriendlyElapsedTime(DateTime dateTime)
+    {
+        var elapsed = DateTime.Now - dateTime;
+        if (elapsed.TotalHours >= 2)
+        {
+            return $"{elapsed.TotalHours:0} hours ago";
+        }
+        else
+        {
+            return $"{elapsed.TotalMinutes:0} minutes ago";
+        }
     }
 }
