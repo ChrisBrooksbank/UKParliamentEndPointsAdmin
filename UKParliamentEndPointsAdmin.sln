@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UKParliamentEndPointsAdmin", "UKParliamentEndPointsAdmin\UKParliamentEndPointsAdmin.csproj", "{FE2E06D0-9272-41DA-8B9E-FFD9DF3C5C2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UKParliamentEndPointsAdmin", "UKParliamentEndPointsAdmin\UKParliamentEndPointsAdmin.csproj", "{FE2E06D0-9272-41DA-8B9E-FFD9DF3C5C2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UKParliamentEndPointsAdmin.Client", "UKParliamentEndPointsAdmin.Client\UKParliamentEndPointsAdmin.Client.csproj", "{CC626F88-2CFA-4F86-A2C4-B66446B49D57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UKParliamentEndPointsAdmin.Client", "UKParliamentEndPointsAdmin.Client\UKParliamentEndPointsAdmin.Client.csproj", "{CC626F88-2CFA-4F86-A2C4-B66446B49D57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
