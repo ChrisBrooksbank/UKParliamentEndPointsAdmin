@@ -1,0 +1,52 @@
+﻿@page "/ping"
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Ping Parliamentary EndPoints</PageTitle>
+
+<h1>Ping Endpoints</h1>
+
+<button class="btn btn-primary" @onclick="PingNewOrFailed" disabled="@isPinging">Ping New Or Failed Endpoints</button>
+<button class="btn btn-primary" @onclick="PingAll" disabled="@isPinging">Ping All Endpoints</button>
+
+@code {
+    const string PingAllUrl = "https://ukparlyendpointsfuncapp.azurewebsites.net/api/PingAllHttp?code=vaj9gh90rC5CsRDzy-ZYzHa5EmnKsTkuYrzF2kU5O_YEAzFun5YxnA%3D%3D";
+    const string PingNewOrFailedUrl = "https://ukparlyendpointsfuncapp.azurewebsites.net/api/PingNewOrFailedHttp?code=vaj9gh90rC5CsRDzy-ZYzHa5EmnKsTkuYrzF2kU5O_YEAzFun5YxnA%3D%3D";
+
+    private bool isPinging = false;
+
+    private async Task PingAll()
+    {
+        isPinging = true;
+        try
+        {
+            using var httpClient = new HttpClient();
+            await httpClient.GetAsync(PingAllUrl);
+        }
+        catch (Exception e)
+        {
+
+        }
+        finally
+        {
+            isPinging = false;
+        }
+    }
+
+    private async Task PingNewOrFailed()
+    {
+        isPinging = true;
+        try
+        {
+            using var httpClient = new HttpClient();
+            await httpClient.GetAsync(PingNewOrFailedUrl);
+        }
+        catch (Exception e)
+        {
+
+        }
+        finally
+        {
+            isPinging = false;
+        }
+    }
+}
